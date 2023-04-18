@@ -4,6 +4,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/users/user.module';
 import { User } from './modules/users/user.entity';
 import { AuthModule } from './modules/auth/auth.module';
+import { CategoryModule } from './modules/categories/category.module';
+import { Category } from './modules/categories/category.entity';
+import { Author } from './modules/authors/author.entity';
+import { AuthorModule } from './modules/authors/author.module';
+import { Book } from './modules/books/book.entity';
+import { BookModule } from './modules/books/book.module';
+import { Comments } from './modules/comments/comment.entity';
+import { CommentModule } from './modules/comments/comment.module';
 
 
 @Module({
@@ -16,11 +24,15 @@ import { AuthModule } from './modules/auth/auth.module';
       database: process.env.ELEPHANT_DATABASE,
       host: process.env.ELEPHANT_HOST,
       password: process.env.ELEPHANT_PASSWORD,
-      entities: [User],
+      entities: [User, Category, Author, Book, Comments],
       synchronize: true
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    CategoryModule,
+    AuthorModule,
+    BookModule,
+    CommentModule
   ],
   controllers: [],
   providers: [],

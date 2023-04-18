@@ -9,4 +9,8 @@ export class UserService {
   constructor(
     @InjectRepository(User) private readonly userRepo: Repository<User>
   ) {}
+
+  async profile(user: any) {
+    return this.userRepo.findOne({ where: { id: user.userId }, relations: { books: true } })
+  }
 }

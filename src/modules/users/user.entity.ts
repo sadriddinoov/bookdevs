@@ -1,4 +1,6 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from 'typeorm'
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm'
+import { Comments } from '../comments/comment.entity'
+import { Book } from '../books/book.entity'
 
 @Entity({name: 'users'})
 export class User extends BaseEntity {
@@ -19,4 +21,10 @@ export class User extends BaseEntity {
 
     @Column({type: 'text', nullable: false})
     password: string
+
+    @OneToMany(() => Comments, (comment) => comment.user)
+    comments: Comments
+
+    @OneToMany(() => Book, (book) => book.user)
+    books: Book[]
 }
